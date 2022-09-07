@@ -16,11 +16,11 @@ export default function Cart(props:any) {
       {itensNoCarrinho.map((item:any) => (
         <div key={item.id}>
           <div className="flex flex-col md:flex-row border-t border-gray-50 m-4 bg-wh bg-white rounded-md overflow-hidden">
-            <div className="md:w-4/12 2xl:w-1/4 h-20 md:h-auto w-full">
+            <div className="md:w-4/12 2xl:w-1/4 h-40 p-8 md:h-auto w-full">
               <img
                 src={item.imageUrl}
                 alt="item"
-                className="h-full object-center object-cover md:block"
+                className="h-full w-full object-center object-cover md:block"
               />
             </div>
             <div className="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-between p-6">
@@ -46,7 +46,7 @@ export default function Cart(props:any) {
                     Remover
                   </p>
                 </div>
-                <p className="text-base font-black leading-none text-gray-800">
+                <p className="text-base font-black leading-none text-gray-800 mt-4 md:mt-0">
                   R$ {item.price.toFixed(2)}
                 </p>
               </div>
