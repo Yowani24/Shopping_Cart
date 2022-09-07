@@ -20,7 +20,7 @@ export default function Cart(props:any) {
               <img
                 src={item.imageUrl}
                 alt="item"
-                className="h-full object-center object-cover md:block hidden"
+                className="h-full object-center object-cover md:block"
               />
             </div>
             <div className="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-between p-6">
