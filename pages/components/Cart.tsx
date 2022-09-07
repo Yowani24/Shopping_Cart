@@ -33,7 +33,7 @@ export default function Cart(props:any) {
               <div className="flex flex-col md:flex-row items-center justify-between pt-5">
                 <div className="flex items-center justify-between ">
                   <p
-                    className="text-xs leading-3 text-gray-800 dark:text-white cursor-pointer"
+                    className="text-xs leading-3 text-gray-800 cursor-pointer"
                     onClick={() => adicionar(item)}
                   >
                     Adicionar
@@ -46,7 +46,7 @@ export default function Cart(props:any) {
                     Remover
                   </p>
                 </div>
-                <p className="text-base font-black leading-none text-gray-800 dark:text-white">
+                <p className="text-base font-black leading-none text-gray-800">
                   R$ {item.price.toFixed(2)}
                 </p>
               </div>
