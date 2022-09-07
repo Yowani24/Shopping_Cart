@@ -95,7 +95,7 @@ const Home: NextPage = () => {
 
         <Cart
           adicionar={Adicionar}
-          itensNoCarrinho={itensNoCarrinho}
+          itensNoCarrinhos={itensNoCarrinho}
           remover={Remover}
         />
       </div>
