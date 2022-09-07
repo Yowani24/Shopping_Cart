@@ -88,7 +88,7 @@ const Home: NextPage = () => {
               key={product.id}
               adicionar={Adicionar}
               remover={Remover}
-              product={product}
+              products={product}
             />
           ))}
         </div>

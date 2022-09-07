@@ -1,8 +1,9 @@
 import React from "react";
 
-export default function Cart(props) {
-  const { itensNoCarrinho, adicionar, remover } = props;
-  const unitPrice = itensNoCarrinho.reduce((a, c) => a + c.qty * c.price, 0);
+export default function Cart(props:any) {
+  const { itensNoCarrinhos, adicionar, remover } = props;
+  const itensNoCarrinho = itensNoCarrinhos ? itensNoCarrinhos : [];
+  const unitPrice = itensNoCarrinho.reduce((a:any, c:any) => a + c.qty * c.price, 0);
   const frete = unitPrice > 10 ? "Frete grátis" : "Frete pago";
   const precoTotal = unitPrice + frete;
   return (
@@ -12,7 +13,7 @@ export default function Cart(props) {
       </p>
       {itensNoCarrinho.length === 0 && <div>Carrinho vazio</div>}
 
-      {itensNoCarrinho.map((item) => (
+      {itensNoCarrinho.map((item:any) => (
         <div key={item.id}>
           <div className="flex flex-col md:flex-row border-t border-gray-50 m-4 bg-wh bg-white rounded-md overflow-hidden">
             <div className="md:w-4/12 2xl:w-1/4 h-20 md:h-auto w-full">

@@ -1,8 +1,9 @@
 import React from "react";
 import { IoIosCart } from "react-icons/io";
 
-export default function Product(props) {
-  const { product, adicionar } = props;
+export default function Product(props:any) {
+  const { products, adicionar } = props;
+  const product = products ? products : [];
   return (
     <div className="flex flex-col items-center md:items-start md:flex-row flex-wrap w-full xl:w-[70%]">
       <div className="m-2">
