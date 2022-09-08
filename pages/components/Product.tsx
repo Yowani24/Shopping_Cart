@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosCart } from "react-icons/io";
 
 export default function Product(props:any) {
-  const { products, adicionar } = props;
+  const { products, addItem } = props;
   const product = products ? products : [];
   return (
     <div className="flex flex-col items-center md:items-start md:flex-row flex-wrap w-full xl:w-[70%]">
@@ -21,7 +21,7 @@ export default function Product(props:any) {
               </button>
               <IoIosCart
                 className="shadow-md rounded-md p-2 transition-all text-5xl active:shadow-sm cursor-pointer hover:text-indigo-600"
-                onClick={() => adicionar(product)}
+                onClick={() => addItem(product)}
               />
             </div>
           </div>

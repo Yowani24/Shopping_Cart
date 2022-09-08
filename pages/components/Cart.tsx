@@ -1,19 +1,18 @@
 import React from "react";
 
 export default function Cart(props:any) {
-  const { itensNoCarrinhos, adicionar, remover } = props;
-  const itensNoCarrinho = itensNoCarrinhos ? itensNoCarrinhos : [];
-  const unitPrice = itensNoCarrinho.reduce((a:any, c:any) => a + c.qty * c.price, 0);
-  const frete = unitPrice > 10 ? "Frete grátis" : "Frete pago";
-  const precoTotal = unitPrice + frete;
+  const { itemsIncartData, addItem, removeItem } = props;
+  const itemsInCart = itemsIncartData ? itemsIncartData : [];
+  const unitPrice = itemsInCart.reduce((a:any, c:any) => a + c.qty * c.price, 0);
+  const Freight = unitPrice > 10 ? "Frete grátis" : "Frete pago";
   return (
     <div className="flex flex-col justify-between bg-cyan-100 w-full xl:w-[30%] p-4">
       <p className="text-center font-black border-b-2 border-white pb-2">
         Carrinho
       </p>
-      {itensNoCarrinho.length === 0 && <div>Carrinho vazio</div>}
+      {itemsInCart.length === 0 && <div>Carrinho vazio</div>}
 
-      {itensNoCarrinho.map((item:any) => (
+      {itemsInCart.map((item:any) => (
         <div key={item.id}>
           <div className="flex flex-col md:flex-row border-t border-gray-50 m-4 bg-wh bg-white rounded-md overflow-hidden">
             <div className="md:w-4/12 2xl:w-1/4 h-40 p-8 md:h-auto w-full">
@@ -34,14 +33,14 @@ export default function Cart(props:any) {
                 <div className="flex items-center justify-between ">
                   <p
                     className="text-xs leading-3 text-gray-800 cursor-pointer"
-                    onClick={() => adicionar(item)}
+                    onClick={() => addItem(item)}
                   >
                     Adicionar
                   </p>
                   <p className="mx-8">{item.qty}</p>
                   <p
                     className="text-xs leading-3 text-red-500 cursor-pointer"
-                    onClick={() => remover(item)}
+                    onClick={() => removeItem(item)}
                   >
                     Remover
                   </p>
@@ -55,11 +54,11 @@ export default function Cart(props:any) {
         </div>
       ))}
 
-      {itensNoCarrinho.length !== 0 && (
+      {itemsInCart.length !== 0 && (
         <div className="flex flex-col md:flex-row bg-white p-6 text-xl mt-20">
           <p className="mr-2">Total a pagar:</p>
           <p>
-            R$ {unitPrice.toFixed(2)} - {frete}
+            R$ {unitPrice.toFixed(2)} - {Freight}
           </p>
         </div>
       )}

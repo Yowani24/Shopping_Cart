@@ -8,49 +8,49 @@ import { BsFillBasket3Fill } from "react-icons/bs";
 
 const Home: NextPage = () => {
   const products = ApiData;
-  const [itensNoCarrinho, setItensNoCarrinho] = useState([]);
+  const [itemsInCart, setitemsInCart] = useState([]);
 
-  const Adicionar = (item: any) => {
+  const AddItem = (item: any) => {
     //Verificando se o item já está no carrinho
-    const isInCart = itensNoCarrinho.find((x: any) => x.id === item.id) as any;
+    const isInCart = itemsInCart.find((x: any) => x.id === item.id) as any;
 
     //Se já estiver no carrinho, então somo mais um...
     if (isInCart) {
-      const novoItem = itensNoCarrinho.map((x: any) =>
+      const novoItem = itemsInCart.map((x: any) =>
         x.id === item.id ? { ...isInCart, qty: isInCart.qty + 1 } : x
       ) as any;
-      setItensNoCarrinho(novoItem);
-      localStorage.setItem("itensNoCarrinho", JSON.stringify(novoItem));
+      setitemsInCart(novoItem);
+      localStorage.setItem("itemsInCart", JSON.stringify(novoItem));
     } else {
-      const novoItem = [...itensNoCarrinho, { ...item, qty: 1 }];
-      setItensNoCarrinho(novoItem as any);
+      const novoItem = [...itemsInCart, { ...item, qty: 1 }];
+      setitemsInCart(novoItem as any);
 
       //armazenando valores no localstorage
-      localStorage.setItem("itensNoCarrinho", JSON.stringify(novoItem));
+      localStorage.setItem("itemsInCart", JSON.stringify(novoItem));
     }
   };
-  const Remover = (item: any) => {
-    const isInCart = itensNoCarrinho.find((x: any) => x.id === item.id) as any;
+  const RemoveItem = (item: any) => {
+    const isInCart = itemsInCart.find((x: any) => x.id === item.id) as any;
 
     if (isInCart.qty === 1) {
-      const novoItem = itensNoCarrinho.filter((x: any) => x.id !== item.id);
-      setItensNoCarrinho(novoItem);
-      localStorage.setItem("itensNoCarrinho", JSON.stringify(novoItem));
+      const novoItem = itemsInCart.filter((x: any) => x.id !== item.id);
+      setitemsInCart(novoItem);
+      localStorage.setItem("itemsInCart", JSON.stringify(novoItem));
     } else {
-      const novoItem = itensNoCarrinho.map((x: any) =>
+      const novoItem = itemsInCart.map((x: any) =>
         x.id === item.id ? { ...isInCart, qty: isInCart.qty - 1 } : x
       ) as any;
-      setItensNoCarrinho(novoItem);
+      setitemsInCart(novoItem);
 
       //armazenando valores no localstorage
-      localStorage.setItem("itensNoCarrinho", JSON.stringify(novoItem));
+      localStorage.setItem("itemsInCart", JSON.stringify(novoItem));
     }
   };
 
   useEffect(() => {
-    setItensNoCarrinho(
-      localStorage.getItem("itensNoCarrinho")
-        ? JSON.parse(localStorage.getItem("itensNoCarrinho") as any)
+    setitemsInCart(
+      localStorage.getItem("itemsInCart")
+        ? JSON.parse(localStorage.getItem("itemsInCart") as any)
         : []
     );
   }, []);
@@ -72,9 +72,9 @@ const Home: NextPage = () => {
         <h1 className="text-2xl text-white font-black tracking-wide">Olá!</h1>
         <span className="absolute right-5 md:right-20 text-2xl text-white font-black tracking-wide">
           <BsFillBasket3Fill className="text-4xl" />
-          {itensNoCarrinho.length ? (
+          {itemsInCart.length ? (
             <h1 className="absolute mt-[-22px] ml-[13px] z-50 text-indigo-600 text-lg">
-              {itensNoCarrinho.length}
+              {itemsInCart.length}
             </h1>
           ) : (
             ""
@@ -86,17 +86,17 @@ const Home: NextPage = () => {
           {products.items.map((product) => (
             <Product
               key={product.id}
-              adicionar={Adicionar}
-              remover={Remover}
+              addItem={AddItem}
+              removeItem={RemoveItem}
               products={product}
             />
           ))}
         </div>
 
         <Cart
-          adicionar={Adicionar}
-          itensNoCarrinhos={itensNoCarrinho}
-          remover={Remover}
+          addItem={AddItem}
+          itemsIncartData={itemsInCart}
+          removeItem={RemoveItem}
         />
       </div>
     </div>
